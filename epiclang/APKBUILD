@@ -1,0 +1,21 @@
+# Contributor:
+# Maintainer:Theodore Gozard
+pkgname=epiclang
+pkgver=20260407090709
+pkgrel=0
+pkgdesc="epiclang"
+url="https://raw.githubusercontent.com/TheodoreGozard/epiclang-alpine-package"
+arch="x86_64"
+license="MIT"
+depends="clang20 python3"
+makedepends=""
+checkdepends=""
+install=""
+source="$pkgname-$pkgver.tar.gz::https://raw.githubusercontent.com/TheodoreGozard/epiclang-alpine-package/refs/heads/main/epiclang/$pkgname-$pkgver.tar.gz"
+builddir="$srcdir"
+
+package() {
+    mkdir -p "$pkgdir/usr/bin"
+    install -Dm755 "$builddir/epiclang" "$pkgdir/usr/bin/epiclang"
+    mkdir -p "$pkgdir/usr/lib/epiclang/plugins"
+}
