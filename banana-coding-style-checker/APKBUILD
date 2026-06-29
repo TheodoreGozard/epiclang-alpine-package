@@ -1,0 +1,22 @@
+# Contributor:
+# Maintainer:Theodore Gozard
+pkgname=banana-coding-style-checker
+pkgver=0.0.1
+pkgrel=0
+pkgdesc="banana-coding-style-checker"
+url="https://raw.githubusercontent.com/TheodoreGozard/epiclang-alpine-package"
+arch="x86_64"
+license="MIT"
+depends="epiclang clang20"
+makedepends=""
+checkdepends=""
+install=""
+source="$pkgname-$pkgver.tar.gz::https://raw.githubusercontent.com/TheodoreGozard/epiclang-alpine-package/refs/heads/main/banana-coding-style-checker/$pkgname-$pkgver.tar.gz"
+builddir="$srcdir"
+
+package() {
+    mkdir -p "$pkgdir/usr/lib/epiclang/plugins/"
+	install -Dm755 "$builddir/banana-coding-style-checker.so" "$pkgdir/usr/lib/epiclang/plugins/"
+    mkdir -p "$pkgdir/usr/bin"
+    install -Dm755 "$builddir/banana-check-repo" "$pkgdir/usr/bin/banana-check-repo"
+}
