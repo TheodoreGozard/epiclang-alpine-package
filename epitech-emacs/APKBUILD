@@ -1,0 +1,37 @@
+pkgname=epitech-emacs
+pkgver=20261014
+pkgrel=0
+pkgdesc="Epitech emacs configuration"
+url="https://github.com/Epitech/epitech-emacs.git"
+arch="all"
+license="MIT"
+depends="emacs-nox"
+makedepends=""
+checkdepends=""
+install=""
+source="$pkgname-$pkgver.tar.gz::https://raw.githubusercontent.com/TheodoreGozard/epiclang-alpine-package/refs/heads/main/epitech-emacs/$pkgname-$pkgver.tar.gz"
+builddir="$srcdir/"
+
+package() {
+    if [ -d "/usr/share/emacs/site-lisp/epitech" ]
+    then
+        rm -r "$pkgdir/usr/share/emacs/site-lisp/epitech"
+    fi
+    mkdir -p "$pkgdir/usr/share/emacs/site-lisp"
+    cp -r "$builddir/src" "$pkgdir/usr/share/emacs/site-lisp/epitech"
+    mkdir -p "$pkgdir/usr/share/emacs/site-lisp/site-start.d"
+    cp "$builddir/src/site-start.d/epitech-init.el" "$pkgdir/usr/share/emacs/site-lisp/site-start.d"
+
+    for home in /home/*; do
+      cat >> "$home/.emacs" <<EOF
+;;
+;; Epitech configuration
+;;
+(add-to-list 'load-path "/usr/share/emacs/site-lisp")
+(load "site-start.d/epitech-init.el")
+EOF
+    done
+}
+sha512sums="
+69e9b498123f050daf324f710a84c93b26ae536a03f5e6476962f8d0ac8602cb9e171ddf855fdaa4f86f2c330a4ddd62a39190b335eac7e252f041f998689418  epitech-emacs-20261014.tar.gz
+"
