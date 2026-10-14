@@ -1,0 +1,17 @@
+pkgname=epitech-vim
+pkgver=20261014
+pkgrel=0
+pkgdesc="Epitech vim configuration"
+url="https://github.com/Epitech/vim-epitech"
+arch="noarch"
+license="MIT"
+depends="vim"
+source="$pkgname-$pkgver.tar.gz::https://raw.githubusercontent.com/TheodoreGozard/epiclang-alpine-package/refs/heads/main/$pkgname/$pkgname-$pkgver.tar.gz"
+
+package() {
+    mkdir -p "$pkgdir/usr/share/vim/vimfiles/plugin"
+    install -D -m 644 "$srcdir/epitech.vim" "$pkgdir/usr/share/vim/vimfiles/plugin/epitech.vim"
+}
+sha512sums="
+9c386ba42ef5d67bf3cb990db0c8a460d35d10792c0660129038d753e53b53d28110aa1ce338cfed3c0de6a3abd8f2f5897e60b328c5b49a0c9f4f59a2edb421  epitech-vim-20261014.tar.gz
+"
